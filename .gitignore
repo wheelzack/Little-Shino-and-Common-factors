@@ -1,52 +1,35 @@
-# Prerequisites
-*.d
+#include <stdio.h>
+//#include <algorithm>
+//using namespace std;
+void main ()
+{
+long long gcd(long long a, long long b)
+ {
+    if(b == 0)
+        return a;
+    else
+        return gcd(a, a%b);
+ }
 
-# Object files
-*.o
-*.ko
-*.obj
-*.elf
+long long no_of_factors(long long n)
+ {
+    int no_of_factors = 0;
+    for(long long i = 1; i*i <= n; i++)
+    {
+        if(n%i == 0)
+        {
+            no_of_factors += (i*i == n ? 1 : 2);
+        }
+    }
+    return no_of_factors;
+ }
 
-# Linker output
-*.ilk
-*.map
-*.exp
+int main()
+ {
+    long long a, b;
+    scanf("%lld %lld", &a, &b);
 
-# Precompiled Headers
-*.gch
-*.pch
-
-# Libraries
-*.lib
-*.a
-*.la
-*.lo
-
-# Shared objects (inc. Windows DLLs)
-*.dll
-*.so
-*.so.*
-*.dylib
-
-# Executables
-*.exe
-*.out
-*.app
-*.i*86
-*.x86_64
-*.hex
-
-# Debug files
-*.dSYM/
-*.su
-*.idb
-*.pdb
-
-# Kernel Module Compile Results
-*.mod*
-*.cmd
-.tmp_versions/
-modules.order
-Module.symvers
-Mkfile.old
-dkms.conf
+    printf("%lld\n", no_of_factors(gcd(max(a, b), min(a, b) ) ) );
+    return 0;
+ }
+}
